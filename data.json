@@ -1,0 +1,192 @@
+{
+  "playlists": [
+    {
+      "playlistName": "English Songs",
+      "desc": "All the viral songs",
+      "albumArt": "./assets/album-art/english-songs.jpeg",
+      "category": "english"
+    },
+    {
+      "playlistName": "Punjabi Songs",
+      "desc": "All the punjabi songs",
+      "albumArt": "./assets/album-art/punjabi-songs.jpeg",
+      "category": "punjabi"
+    },
+    {
+      "playlistName": "BollyVibe",
+      "desc": "Best hits by Bollywood :)",
+      "albumArt": "./assets/album-art/bollywood-songs.jpeg",
+      "category": "bollywood"
+    },
+    {
+      "playlistName": "Sleep",
+      "desc": "Gentle Ambient piano to help you fall asleep.",
+      "albumArt": "./assets/album-art/sleep-songs.jpeg",
+      "category": "sleep"
+    },
+    {
+      "playlistName": "Nightstorms",
+      "desc": "Comforting sounds of thunder and rain.",
+      "albumArt": "./assets/album-art/nightstorms.jpeg",
+      "category": "nightstorms"
+    },
+    {
+      "playlistName": "Anime Now",
+      "desc": "Hottest Anime tracks! 最新アニメシーンの話題曲をまとめてお届け!",
+      "albumArt": "./assets/album-art/anime-now.jpeg",
+      "category": "anime"
+    },
+    {
+      "playlistName": "Time Capsule",
+      "desc": "Playlist with songs to take you back in time.",
+      "albumArt": "./assets/album-art/time-capsule.jpg",
+      "category": "oldSong"
+    }
+  ],
+  "songs": [
+    {
+      "id": 0,
+      "trackName": "Blinding Lights",
+      "artist": "The Weeknd",
+      "album": "After Hours",
+      "tags": ["english"],
+      "cover": "./assets/cover-art/Blinding Lights - After Hours - The Weeknd.jpg",
+      "src": "./songs/Blinding Lights - After Hours - The Weeknd.mp3"
+    },
+    {
+      "id": 1,
+      "trackName": "Hymn For The Weekend",
+      "artist": "Coldplay",
+      "album": "A Head Full of Dreams",
+      "tags": ["english"],
+      "cover": "./assets/cover-art/Hymn For The Weekend - A Head Full of Dreams - Coldplay Ft. Beyonce.jpg",
+      "src": "./songs/Hymn For The Weekend - A Head Full of Dreams - Coldplay Ft. Beyonce.mp3"
+    },
+    {
+      "id": 2,
+      "trackName": "Attention",
+      "artist": "Charlie Puth",
+      "album": "Voicenotes",
+      "tags": ["english"],
+      "cover": "./assets/cover-art/Attention - Voicenotes - Charlie Puth.jpg",
+      "src": "./songs/Attention - Voicenotes - Charlie Puth.mp3"
+    },  
+    {
+      "id": 3,
+      "trackName": "One Love",
+      "artist": "Shubh",
+      "album": "One Love",
+      "tags": ["punjabi"],
+      "cover": "./assets/cover-art/One Love - Shubh.jpg",
+      "src": "./songs/One Love - Shubh.mp3"
+    },
+    {
+      "id": 4,
+      "trackName": "295",
+      "artist": "Sidhu Moose Wala",
+      "album": "Moosetape",
+      "tags": ["punjabi"],
+      "cover": "./assets/cover-art/295 - Sidhu Moose Wala.jpg",
+      "src": "./songs/295 - Sidhu Moose Wala.mp3"
+    },
+    {
+      "id": 5,
+      "trackName": "Lalkara",
+      "artist": "Diljit Dosanjh, Intense, Sultaan",
+      "album": "Ghost",
+      "tags": ["punjabi"],
+      "cover": "./assets/cover-art/Lalkara - Diljit Dosanjh.jpg",
+      "src": "./songs/Lalkara - Diljit Dosanjh.mp3"
+    },
+    {
+      "id": 6,
+      "trackName": "More than words",
+      "artist": "Hitsujibungaku",
+      "album": "Jujutsu Kaisen",
+      "tags": ["anime"],
+      "cover": "./assets/cover-art/More than words - Hitsujibungaku.jpg",
+      "src": "./songs/More than words - Hitsujibungaku.mp3"
+    },
+    {
+      "id": 7,
+      "trackName": "Bluebird",
+      "artist": "Ikimonogakari",
+      "album": "Naruto Shippuden",
+      "tags": ["anime"],
+      "cover": "./assets/cover-art/Bluebird - Ikimonogakari.jpg",
+      "src": "./songs/Bluebird - Ikimonogakari.mp3"
+    },
+    {
+      "id": 8,
+      "trackName": "Refrain Boy",
+      "artist": "ALL OFF",
+      "album": "Mob Psycho",
+      "tags": ["anime"],
+      "cover": "./assets/cover-art/Refrain Boy - ALL OFF.jpg",
+      "src": "./songs/Refrain Boy - ALL OFF.mp3"
+    },
+    {
+      "id": 9,
+      "trackName": "Somnisonic",
+      "artist": "Broken Peak",
+      "album": "Somnisonic",
+      "tags": ["sleep"],
+      "cover": "./assets/cover-art/Somnisonic - Broken Peak.jpg",
+      "src": "./songs/Somnisonic - Broken Peak.mp3"
+    },
+    {
+      "id": 10,
+      "trackName": "Stormy Nights",
+      "artist": "Chō",
+      "album": "Tumbling Sky",
+      "tags": ["nightstorms"],
+      "cover": "./assets/cover-art/Stormy Nights - Chō.jpg",
+      "src": "./songs/Stormy Nights - Chō.mp3"
+    },
+    {
+      "id": 11,
+      "trackName": "Raataan Lambiyan",
+      "artist": "Tanishk Bagchi, Jubin Nautiyal, Asees Kaur",
+      "album": "Shershaah",
+      "tags": ["bollywood"],
+      "cover": "./assets/cover-art/Raataan Lambiyan - Tanishk Bagchi.jpg",
+      "src": "./songs/Raataan Lambiyan - Tanishk Bagchi.mp3"
+    },
+    {
+      "id": 12,
+      "trackName": "Chaleya",
+      "artist": "Anirudh Ravichander, Arijit Singh, Shilpa Rao, Kumaar",
+      "album": "Jawan",
+      "tags": ["bollywood"],
+      "cover": "./assets/cover-art/Chaleya - Anirudh Ravichander.jpg",
+      "src": "./songs/Chaleya - Anirudh Ravichander.mp3"
+    },
+    {
+      "id": 13,
+      "trackName": "Break My Heart",
+      "artist": "Dua Lipa",
+      "album": "Future Nostalgia",
+      "tags": ["english"],
+      "cover": "./assets/cover-art/Break My Heart - Future Nostalgia - Dua Lipa.jpg",
+      "src": "./songs/Break My Heart - Future Nostalgia - Dua Lipa.mp3"
+    },
+    {
+      "id": 14,
+      "trackName": "Leisure",
+      "artist": "Blake Tyber",
+      "album": "Leisure",
+      "tags": ["sleep"],
+      "cover": "./assets/cover-art/Leisure - Blake Tyber.jpg",
+      "src": "./songs/Leisure - Blake Tyber.mp3"
+    },
+    {
+      "id": 15,
+      "trackName": "Rockabye",
+      "artist": "Clean Bandit, Sean Paul, Anne-Marie",
+      "album": "Speak Your Mind",
+      "tags": ["english"],
+      "cover": "./assets/cover-art/Rockabye - Speak Your Mind - Clean Bandit, Anne-Marie.jpg",
+      "src": "./songs/Rockabye - Speak Your Mind - Clean Bandit, Anne-Marie.mp3"
+    }
+  ]
+}
