@@ -18,6 +18,9 @@
     .wide-card .play-btn {
         padding: 9px;
     }
+    .song-results-container {
+        width: 100%;
+    }
 }
 
 @container (max-width: 710px) {
