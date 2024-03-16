@@ -3,6 +3,8 @@ let data;
 let songsObject = {}
 let queue = []
 let likedSongs = []
+let repeatSongs = []
+let rewindSongs = []
 let currSongVol = 0
 let currSongIndex;
 let settings = {}
@@ -77,6 +79,7 @@ async function loadSettings() {
   if (dataStr) {
     data = JSON.parse(dataStr)
     likedSongs = data.likedSongsList
+    rewindSongs = data.rewindSongsList
     currentSong.volume = data.volume
     repeatFlag = data.repeat
     shuffleFlag = data.shuffle
@@ -87,7 +90,7 @@ async function loadSettings() {
     }
 
     // set player controls property
-    if (screen.width < 675) {
+    if (screen.width < 676) {
       document.querySelector(".player-container").style.display = "flex"
       document.querySelector(".container").style.setProperty("--cont-height", "62px")
       document.querySelector(".menu").style.setProperty("--menu-height", "78px")
@@ -140,6 +143,7 @@ function saveSettings() {
   settings.volume = volumeBar.value / 100
   settings.songId = currentSong.dataset.id
   settings.likedSongsList = likedSongs
+  settings.rewindSongsList = rewindSongs
   settings.repeat = repeatFlag
   settings.shuffle = shuffleFlag
   localStorage.setItem("settings", JSON.stringify(settings));
@@ -249,8 +253,8 @@ function likedSongsPlaylistFunction() {
   trackCount.innerText = ""
   musicList.innerHTML = ""
   currentPl.innerText = "Liked Songs"
-  let likedSongsData = songsObject.songs.filter(e => likedSongs.includes(e.id))
   if (likedSongs.length > 0) {
+    let likedSongsData = likedSongs.map(songId => songsObject.songs.find(song => song.id === songId)).filter(song => song !== undefined)
     displaySongList(likedSongsData)
   }
 }
@@ -298,7 +302,7 @@ function displaySongList(list) {
     e.addEventListener("click", () => {
       let songId = e.dataset.id
       // update layout if song is played
-      if (screen.width < 675) {
+      if (screen.width < 676) {
         document.querySelector(".player-container").style.display = "flex"
         document.querySelector(".container").style.setProperty("--cont-height", "62px")
         document.querySelector(".menu").style.setProperty("--menu-height", "78px")
@@ -446,6 +450,17 @@ async function main() {
       duration.innerText = secondsToMinutes(currentSong.duration)
       songTimePercent = (currentSong.currentTime / currentSong.duration) * 100
 
+      // add to repeatSongs if listened to full song
+      if (songTimePercent > 98) {
+        if (!repeatSongs.includes(parseInt(currentSong.dataset.id))) {
+          repeatSongs.unshift(parseInt(currentSong.dataset.id))
+        }
+        if (!rewindSongs.includes(parseInt(currentSong.dataset.id))) {
+          rewindSongs.unshift(parseInt(currentSong.dataset.id))
+          rewindSongs = rewindSongs.slice(0, 10)
+          saveSettings()
+        }
+      }
       // move seekbar
       seekBar.style.setProperty("--seekBar-pos", `${songTimePercent}%`)
       seekBar.value = songTimePercent * 10
@@ -530,23 +545,23 @@ async function main() {
   //! update layout according to screen size
   addEventListener("resize", () => {
     marqueeAnimation()
-    if (screen.width < 675 && currentSong.src) {
+    if (screen.width < 676 && currentSong.src) {
       document.querySelector(".player-container").style.display = "flex"
       document.querySelector(".container").style.setProperty("--cont-height", "62px")
       document.querySelector(".menu").style.setProperty("--menu-height", "78px")
       currentSong.volume = 1
     }
-    else if (screen.width < 675) {
+    else if (screen.width < 676) {
       document.querySelector(".container").style.setProperty("--cont-height", "0px")
       document.querySelector(".menu").style.setProperty("--menu-height", "16px")
     }
-    else if (screen.width > 675) {
+    else if (screen.width > 676) {
       document.querySelector(".menu").style.setProperty("--menu-height", "91px")
       document.querySelector(".container").style.setProperty("--cont-height", "75px")
       currentSong.volume = volumeBar.value / 100
     }
 
-    if (screen.width < 768 && libCollapsed) {
+    if (screen.width < 769 && libCollapsed) {
       libCollapsed = !libCollapsed
       library.querySelector(".defaultLib").style.display = "block"
       library.querySelector(".collapsedLib").style.display = "none"
@@ -659,7 +674,7 @@ async function main() {
       saveSettings()
     }
     else {
-      likedSongs.push(parseInt(currentSong.dataset.id))
+      likedSongs.unshift(parseInt(currentSong.dataset.id))
       likeBtn.classList.add("btn-like-animation1")
       likeBtn.classList.remove("btn-like-animation2")
       defaultLikeIcon.style.display = "none"
@@ -673,21 +688,61 @@ async function main() {
   likedSongCard.querySelector("span").innerText = likedSongs.length;
 
   //! event listener for loading liked songs playlist
-  likedSongCard.addEventListener("click", () => {
-    displayedPl = likedSongCard
-    likedSongsPlaylistFunction()
+  document.querySelectorAll(".liked-song-card").forEach((card) => {
+    card.addEventListener("click", () => {
+      displayedPl = likedSongCard
+      likedSongsPlaylistFunction()
+    })
+
   });
 
   //! event listener for playing liked songs playlist
-  likedSongCard.querySelector("button").addEventListener("click", (e) => {
-    e.stopPropagation()
-    displayedPl = likedSongCard
-    abc = likedSongCard
-    likedSongsPlaylistFunction()
-    if (likedSongs.length > 0) {
-      if (currPl != likedSongCard) {
+  document.querySelectorAll(".liked-song-card").forEach((card) => {
+    card.querySelector("button").addEventListener("click", (e) => {
+      e.stopPropagation()
+      displayedPl = likedSongCard
+      abc = likedSongCard
+      likedSongsPlaylistFunction()
+      if (likedSongs.length > 0) {
+        if (currPl != likedSongCard) {
+          prevPl = currPl
+          currPl = likedSongCard
+          setTrack(queue[0])
+        }
+        if (currentSong.paused) {
+          playTrack()
+        }
+        else {
+          pauseTrack()
+        }
+      }
+    })
+  });
+
+  //! event listener for loading all songs
+  document.querySelectorAll(".all-song-card").forEach((card) => {
+    card.addEventListener("click", () => {
+      displayedPl = allSongCard
+      musicList.innerHTML = ""
+      trackCount.innerText = ""
+      currentPl.innerText = "All Songs"
+      displaySongList(sortSongsByName(songsObject.songs))
+    });
+  });
+
+  //! event listener for playing all songs
+  document.querySelectorAll(".all-song-card").forEach((card) => {
+    card.querySelector("button").addEventListener("click", (e) => {
+      e.stopPropagation()
+      displayedPl = allSongCard
+      abc = allSongCard
+      musicList.innerHTML = ""
+      trackCount.innerText = ""
+      currentPl.innerText = "All Songs"
+      displaySongList(sortSongsByName(songsObject.songs))
+      if (currPl != allSongCard) {
         prevPl = currPl
-        currPl = likedSongCard
+        currPl = allSongCard
         setTrack(queue[0])
       }
       if (currentSong.paused) {
@@ -696,38 +751,93 @@ async function main() {
       else {
         pauseTrack()
       }
-    }
+    });
   });
 
-  //! event listener for loading all songs
-  allSongCard.addEventListener("click", () => {
-    displayedPl = allSongCard
-    musicList.innerHTML = ""
-    trackCount.innerText = ""
-    currentPl.innerText = "All Songs"
-    displaySongList(sortSongsByName(songsObject.songs))
+  //! event listener for loading on-repeat songs
+  document.querySelectorAll(".repeat-song-card").forEach((card) => {
+    card.addEventListener("click", () => {
+      displayedPl = repeatSongCard
+      musicList.innerHTML = ""
+      trackCount.innerText = ""
+      currentPl.innerText = "On Repeat"
+      if (repeatSongs.length > 0) {
+        let repeatSongsData = repeatSongs.map(songId => songsObject.songs.find(song => song.id === songId)).filter(song => song !== undefined)
+        displaySongList(repeatSongsData)
+      }
+    })
+
   });
 
-  //! event listener for playing all songs
-  allSongCard.querySelector("button").addEventListener("click", (e) => {
-    e.stopPropagation()
-    displayedPl = allSongCard
-    abc = allSongCard
-    musicList.innerHTML = ""
-    trackCount.innerText = ""
-    currentPl.innerText = "All Songs"
-    displaySongList(sortSongsByName(songsObject.songs))
-    if (currPl != allSongCard) {
-      prevPl = currPl
-      currPl = allSongCard
-      setTrack(queue[0])
-    }
-    if (currentSong.paused) {
-      playTrack()
-    }
-    else {
-      pauseTrack()
-    }
+  //! event listener for playing on-repeat songs
+  document.querySelectorAll(".repeat-song-card").forEach((card) => {
+    card.querySelector("button").addEventListener("click", (e) => {
+      e.stopPropagation()
+      displayedPl = repeatSongCard
+      abc = repeatSongCard
+      musicList.innerHTML = ""
+      trackCount.innerText = ""
+      currentPl.innerText = "On Repeat"
+      if (repeatSongs.length > 0) {
+        let repeatSongsData = repeatSongs.map(songId => songsObject.songs.find(song => song.id === songId)).filter(song => song !== undefined)
+        displaySongList(repeatSongsData)
+        if (currPl != repeatSongCard) {  // check if this is new playlist
+          prevPl = currPl
+          currPl = repeatSongCard
+          setTrack(queue[0])
+        }
+        if (currentSong.paused) {
+          playTrack()
+        }
+        else {
+          pauseTrack()
+        }
+      }
+    })
+
+  });
+
+  //! event listener for loading repeat-rewind songs
+  document.querySelectorAll(".rewind-song-card").forEach((card) => {
+    card.addEventListener("click", () => {
+      displayedPl = rewindSongCard
+      musicList.innerHTML = ""
+      trackCount.innerText = ""
+      currentPl.innerText = "Repeat Rewind"
+      if (rewindSongs.length > 0) {
+        let rewindSongsData = rewindSongs.map(songId => songsObject.songs.find(song => song.id === songId)).filter(song => song !== undefined)
+        displaySongList(rewindSongsData)
+      }
+    })
+
+  });
+
+  //! event listener for playing repeat-rewind songs
+  document.querySelectorAll(".rewind-song-card").forEach((card) => {
+    card.querySelector("button").addEventListener("click", (e) => {
+      e.stopPropagation()
+      displayedPl = rewindSongCard
+      abc = rewindSongCard
+      musicList.innerHTML = ""
+      trackCount.innerText = ""
+      currentPl.innerText = "Repeat Rewind"
+      if (rewindSongs.length > 0) {
+        let rewindSongsData = rewindSongs.map(songId => songsObject.songs.find(song => song.id === songId)).filter(song => song !== undefined)
+        displaySongList(rewindSongsData)
+        if (currPl != rewindSongCard) {  // check if this is new playlist
+          prevPl = currPl
+          currPl = rewindSongCard
+          setTrack(queue[0])
+        }
+        if (currentSong.paused) {
+          playTrack()
+        }
+        else {
+          pauseTrack()
+        }
+      }
+    })
+
   });
 
   //! add event listener for home button
@@ -762,13 +872,13 @@ async function main() {
 
     document.title = "Spotify - Search"
 
-    if (screen.width < 768) {
+    if (screen.width < 769) {
       menu.style.left = "-500px"
       document.querySelector(".content-container").style.filter = "blur(0)"
     }
-    
+
     document.querySelector(".quick-links").classList.add("hidden")
-    
+
     searchInput.value = ""
     searchInput.focus()
   });
@@ -810,18 +920,18 @@ async function main() {
     filteredList.forEach((obj) => {
       resultList.innerHTML += `
         <li>
-          <a href="#" class="song-result flex pointer item-center" data-id="${obj.id}">
-            <div class="album-art ${obj.cover ? "img-play-btn" : ""}">
-              <img src="${obj.cover}" alt="">
+          <a href="#" class="song-result flex pointer item-center justify-between" data-id="${obj.id}">
+            <div class="song-details flex item-center">
+              <div class="album-art ${obj.cover ? "img-play-btn" : ""}">
+                <img src="${obj.cover}" alt="">
+              </div>
+              <div class="song-details">
+                <h4>${obj.trackName}</h4>
+                <p>${obj.artist} • ${obj.album}</p>
+              </div>
             </div>
-            <div class="song-details flex item-center justify-between">
-              <div>
-                <p>${obj.trackName}</p>
-                <div class="sec-txt">${obj.artist} • ${obj.album}</div>
-              </div>
-              <div class="duration sec-txt">
-                <span>0:00</span>
-              </div>
+            <div class="duration">
+              <span>0:00</span>
             </div>
           </a>
         </li>
@@ -862,7 +972,7 @@ async function main() {
   let libCollapsed = false
   //! add event listener to collapse library
   library.addEventListener("click", () => {
-    if (screen.width < 768) {
+    if (screen.width < 769) {
       return
     }
 
@@ -890,6 +1000,3 @@ async function main() {
 }
 
 main()
-
-//? Host on cloud
-//? Improve code

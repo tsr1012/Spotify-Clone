@@ -227,18 +227,18 @@
               <h1>Songs</h1>
               <ul id="resultList">
                 <!-- <li>
-                  <a href="#" class="song-result flex pointer item-center" tabindex="-1">
-                    <div class="album-art">
-                      <img src="" alt="">
+                  <a href="#" class="song-result flex pointer item-center justify-between" data-id="">
+                    <div class="song-details flex item-center">
+                      <div class="album-art">
+                        <img src="./assets/cover-art/Attention - Voicenotes - Charlie Puth.jpg" alt="">
+                      </div>
+                      <div class="song-details">
+                        <h4>Attention</h4>
+                        <p>Charlie Puth • Voicenotes</p>
+                      </div>
                     </div>
-                    <div class="song-details flex item-center justify-between">
-                      <div>
-                        <p>Attention Song</p>
-                        <div class="sec-txt">Charlie Puth • Voicenotes</div>
-                      </div>
-                      <div class="duration sec-txt">
-                        <span>3:30</span>
-                      </div>
+                    <div class="duration">
+                      <span>0:00</span>
                     </div>
                   </a>
                 </li> -->
@@ -247,6 +247,92 @@
           </div>
         </div>
         <div class="spotify-playlists relative flex-col">
+          <div class="wide-cards-container">
+            <!-- Wide Card -->
+            <a href="#" class="all-song-card wide-card flex item-center justify-between">
+              <div class="details-cont flex item-center">
+                <img src="./assets/album-art/all-songs.jpeg" alt="">
+                <h4>All Songs</h4>
+              </div>
+              <div class="pl-btn-cont">
+                <button class="play-btn unset flex justify-center item-center pointer">
+                  <svg class="paused" viewBox="0 0 24 24">
+                    <path
+                      d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z">
+                    </path>
+                  </svg>
+                  <svg class="playing" viewBox="0 0 24 24">
+                    <path
+                      d="M5.7 3a.7.7 0 0 0-.7.7v16.6a.7.7 0 0 0 .7.7h2.6a.7.7 0 0 0 .7-.7V3.7a.7.7 0 0 0-.7-.7H5.7zm10 0a.7.7 0 0 0-.7.7v16.6a.7.7 0 0 0 .7.7h2.6a.7.7 0 0 0 .7-.7V3.7a.7.7 0 0 0-.7-.7h-2.6z">
+                    </path>
+                  </svg>
+                </button>
+              </div>
+            </a>
+            <!-- Wide Card -->
+            <a href="#" class="liked-song-card wide-card flex item-center justify-between">
+              <div class="details-cont flex item-center">
+                <img src="./assets/album-art/liked-songs.png" alt="">
+                <h4>Liked Songs</h4>
+              </div>
+              <div class="pl-btn-cont">
+                <button class="play-btn unset flex justify-center item-center pointer">
+                  <svg class="paused" viewBox="0 0 24 24">
+                    <path
+                      d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z">
+                    </path>
+                  </svg>
+                  <svg class="playing" viewBox="0 0 24 24">
+                    <path
+                      d="M5.7 3a.7.7 0 0 0-.7.7v16.6a.7.7 0 0 0 .7.7h2.6a.7.7 0 0 0 .7-.7V3.7a.7.7 0 0 0-.7-.7H5.7zm10 0a.7.7 0 0 0-.7.7v16.6a.7.7 0 0 0 .7.7h2.6a.7.7 0 0 0 .7-.7V3.7a.7.7 0 0 0-.7-.7h-2.6z">
+                    </path>
+                  </svg>
+                </button>
+              </div>
+            </a>
+            <!-- Wide Card -->
+            <a href="#" class="repeat-song-card wide-card flex item-center justify-between">
+              <div class="details-cont flex item-center">
+                <img src="./assets/album-art/on-repeat.jpg" alt="">
+                <h4>On Repeat</h4>
+              </div>
+              <div class="pl-btn-cont">
+                <button class="play-btn unset flex justify-center item-center pointer">
+                  <svg class="paused" viewBox="0 0 24 24">
+                    <path
+                      d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z">
+                    </path>
+                  </svg>
+                  <svg class="playing" viewBox="0 0 24 24">
+                    <path
+                      d="M5.7 3a.7.7 0 0 0-.7.7v16.6a.7.7 0 0 0 .7.7h2.6a.7.7 0 0 0 .7-.7V3.7a.7.7 0 0 0-.7-.7H5.7zm10 0a.7.7 0 0 0-.7.7v16.6a.7.7 0 0 0 .7.7h2.6a.7.7 0 0 0 .7-.7V3.7a.7.7 0 0 0-.7-.7h-2.6z">
+                    </path>
+                  </svg>
+                </button>
+              </div>
+            </a>
+            <!-- Wide Card -->
+            <a href="#" class="rewind-song-card wide-card flex item-center justify-between">
+              <div class="details-cont flex item-center">
+                <img src="./assets/album-art/repeat-rewind.jpg" alt="">
+                <h4>Repeat Rewind</h4>
+              </div>
+              <div class="pl-btn-cont">
+                <button class="play-btn unset flex justify-center item-center pointer">
+                  <svg class="paused" viewBox="0 0 24 24">
+                    <path
+                      d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z">
+                    </path>
+                  </svg>
+                  <svg class="playing" viewBox="0 0 24 24">
+                    <path
+                      d="M5.7 3a.7.7 0 0 0-.7.7v16.6a.7.7 0 0 0 .7.7h2.6a.7.7 0 0 0 .7-.7V3.7a.7.7 0 0 0-.7-.7H5.7zm10 0a.7.7 0 0 0-.7.7v16.6a.7.7 0 0 0 .7.7h2.6a.7.7 0 0 0 .7-.7V3.7a.7.7 0 0 0-.7-.7h-2.6z">
+                    </path>
+                  </svg>
+                </button>
+              </div>
+            </a>
+          </div>
           <!-- Playlist Section 1 -->
           <div>
             <div class="pl-mode flex justify-between item-center">
@@ -261,7 +347,7 @@
             </div>
             <div class="cards-container">
               <!-- playlist card -->
-              <a href="#" id="allSongCard" class="pl-card rounded pointer">
+              <a href="#" id="allSongCard" class="all-song-card pl-card rounded pointer">
                 <div class="relative pl-img-wrapper">
                   <img class="rounded" src="./assets/album-art/all-songs.jpeg" alt="cover">
                   <button class="play-btn unset absolute flex justify-center item-center pointer">
@@ -283,7 +369,7 @@
                 </div>
               </a>
               <!-- playlist card -->
-              <a href="#" id="likedSongCard" class="pl-card rounded pointer">
+              <a href="#" id="likedSongCard" class="liked-song-card pl-card rounded pointer">
                 <div class="relative pl-img-wrapper">
                   <img class="rounded" src="./assets/album-art/liked-songs.png" alt="cover">
                   <button class="play-btn unset absolute flex justify-center item-center pointer">
@@ -302,6 +388,50 @@
                 <div>
                   <h4>Liked Songs</h4>
                   <p><span></span> songs</p>
+                </div>
+              </a>
+              <!-- playlist card -->
+              <a href="#" id="repeatSongCard" class="repeat-song-card pl-card rounded pointer">
+                <div class="relative pl-img-wrapper">
+                  <img class="rounded" src="./assets/album-art/on-repeat.jpg" alt="cover">
+                  <button class="play-btn unset absolute flex justify-center item-center pointer">
+                    <svg class="paused" viewBox="0 0 24 24">
+                      <path
+                        d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z">
+                      </path>
+                    </svg>
+                    <svg class="playing" viewBox="0 0 24 24">
+                      <path
+                        d="M5.7 3a.7.7 0 0 0-.7.7v16.6a.7.7 0 0 0 .7.7h2.6a.7.7 0 0 0 .7-.7V3.7a.7.7 0 0 0-.7-.7H5.7zm10 0a.7.7 0 0 0-.7.7v16.6a.7.7 0 0 0 .7.7h2.6a.7.7 0 0 0 .7-.7V3.7a.7.7 0 0 0-.7-.7h-2.6z">
+                      </path>
+                    </svg>
+                  </button>
+                </div>
+                <div>
+                  <h4>On Repeat</h4>
+                  <p>Songs you love right now.</p>
+                </div>
+              </a>
+              <!-- playlist card -->
+              <a href="#" id="rewindSongCard" class="rewind-song-card pl-card rounded pointer">
+                <div class="relative pl-img-wrapper">
+                  <img class="rounded" src="./assets/album-art/repeat-rewind.jpg" alt="cover">
+                  <button class="play-btn unset absolute flex justify-center item-center pointer">
+                    <svg class="paused" viewBox="0 0 24 24">
+                      <path
+                        d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z">
+                      </path>
+                    </svg>
+                    <svg class="playing" viewBox="0 0 24 24">
+                      <path
+                        d="M5.7 3a.7.7 0 0 0-.7.7v16.6a.7.7 0 0 0 .7.7h2.6a.7.7 0 0 0 .7-.7V3.7a.7.7 0 0 0-.7-.7H5.7zm10 0a.7.7 0 0 0-.7.7v16.6a.7.7 0 0 0 .7.7h2.6a.7.7 0 0 0 .7-.7V3.7a.7.7 0 0 0-.7-.7h-2.6z">
+                      </path>
+                    </svg>
+                  </button>
+                </div>
+                <div>
+                  <h4>Repeat Rewind</h4>
+                  <p>You past favorites.</p>
                 </div>
               </a>
             </div>

@@ -41,6 +41,72 @@
       "desc": "Playlist with songs to take you back in time.",
       "albumArt": "./assets/album-art/time-capsule.jpg",
       "category": "oldSong"
+    },
+    {
+      "playlistName": "Workout",
+      "desc": "Pop hits to keep your workout fresh",
+      "albumArt": "./assets/album-art/workout-songs.jpg",
+      "category": "workout"
+    },
+    {
+      "playlistName": "mint",
+      "desc": "The world's biggest dance hits.",
+      "albumArt": "./assets/album-art/dance-songs.jpg",
+      "category": "dance"
+    },
+    {
+      "playlistName": "Top Gaming Tracks",
+      "desc": "Press play, press start.",
+      "albumArt": "./assets/album-art/gaming-songs.jpg",
+      "category": "gaming"
+    },
+    {
+      "playlistName": "shōnen",
+      "desc": "Perfect mixtape for an anime fight scene.",
+      "albumArt": "./assets/album-art/shonen.jpg",
+      "category": "anime_fight"
+    },
+    {
+      "playlistName": "Hit Repeat",
+      "desc": "By Spotify",
+      "albumArt": "./assets/album-art/hit-repeat.jpg",
+      "category": "hit_repeat"
+    },
+    {
+      "playlistName": "Genre Glitch",
+      "desc": "By Spotify",
+      "albumArt": "./assets/album-art/genre-glitch.jpg",
+      "category": "genre_glitch"
+    },
+    {
+      "playlistName": "Moody Mix",
+      "desc": "By Spotify",
+      "albumArt": "./assets/album-art/moody-songs.jpg",
+      "category": "moody"
+    },
+    {
+      "playlistName": "Happy Beats",
+      "desc": "By Spotify",
+      "albumArt": "./assets/album-art/happy-songs.jpg",
+      "category": "happy"
+    },
+    {
+      "playlistName": "Night Rider",
+      "desc": "By Spotify",
+      "albumArt": "./assets/album-art/night-rider.jpg",
+      "category": "night_rider"
+    },
+    {
+      "playlistName": "Sad Beats",
+      "desc": "By Spotify",
+      "albumArt": "./assets/album-art/sad-songs.jpg",
+      "category": "sad"
+    },
+    {
+      "playlistName": "techno party",
+      "desc": "By Spotify",
+      "albumArt": "./assets/album-art/party-songs.jpg",
+      "category": "party"
     }
   ],
   "songs": [
